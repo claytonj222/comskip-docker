@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this file.  If not, see <http://www.gnu.org/licenses/>.
 #
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND="noninteractive"
 ENV TERM="xterm" LANG="C.UTF-8" LC_ALL="C.UTF-8"
 RUN apt-get update && \
@@ -30,6 +30,7 @@ RUN apt-get update && \
       libavcodec-dev  \
       libavformat-dev \
       libavutil-dev \
+      libswscale-dev \
       libsdl1.2-dev \
       libtool-bin \
       python3 \
@@ -37,7 +38,7 @@ RUN apt-get update && \
 #
 # Clone comskip
     cd /opt && \
-    git clone git://github.com/erikkaashoek/Comskip comskip && \
+    git clone https://github.com/erikkaashoek/Comskip comskip && \
     cd comskip && \
     ./autogen.sh && \
     ./configure && \
