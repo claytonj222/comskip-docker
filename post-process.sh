@@ -12,15 +12,6 @@ set -o pipefail
 set -o nounset
 # set -o xtrace
 
-CONTAINER_NAME="comskip-docker"
-
-# If the script is not running inside Docker, re-run it inside the container
-if ! grep -q docker /proc/1/cgroup; then
-    echo "Re-executing inside the Docker container..."
-    docker exec -it "$CONTAINER_NAME" /bin/bash -c "/config/post-process.sh '$1'"
-    exit 0
-fi
-
 # Set ffmpeg path to Jellyfin ffmpeg
 __ffmpeg="$(which ffmpeg || echo '/usr/lib/jellyfin-ffmpeg/ffmpeg')"
 
